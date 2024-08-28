@@ -4,16 +4,18 @@ import './App.css';
 import {Button} from 'antd';
 import {Typography} from 'antd';
 import {useState} from 'react';
-import MyTable from './Table';
+import TableWithSearch from './komponenty/TableWithSearch';
 
 const { Title, Text, Paragraph } = Typography;
 
 
-function App() {
+const App = () => {
 
   
   return (
-    
+    <>
+    <TableWithSearch />
+    </>
   );
 }
 
