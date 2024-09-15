@@ -71,12 +71,12 @@ const TableWithSearch = () =>{
         ])
         
         const handleChange = (value: dataType) => {
-            const  newTable = c
+            //const  newTable =;
         }
 
     return(
         <>
-        <Input placeholder="Szukaj" onChange={handleChange} />
+        <Input placeholder="Szukaj"  />
             <Table columns={columns} dataSource={dataSource}/>
         </>
     );

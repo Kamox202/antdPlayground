@@ -1,23 +1,45 @@
 import MyForm from "./MyForm";
 import MyTable from "./Table";
-import { Drawer, Form, FormInstance } from "antd";
+import { Drawer, Form, FormInstance, Table } from "antd";
 import { DataType } from "./Table";
+import { exampleDataType, Tabela } from "./ExampleData";
+import { useState } from "react";
+import MyModal from "./MyModal";
+
 
 interface Props{
-    form: FormInstance<DataType>;
-    showDrawer: boolean;
     
+    showDrawer: boolean;
+    hideDrawer: () => void;
    }
 
-const MyDrawer = ({showDrawer}: Props, {form} : Props, hideDrawer: any) =>
+  
+const MyDrawer= ({showDrawer, hideDrawer}: Props) =>
     {
-         [form] = Form.useForm();
+        const [modalOpen, setModalOpen] = useState(false);
+        const [selectedRecord, setSelectedRecord] = useState<exampleDataType>();
+
+        const hideModal = () =>{
+            setModalOpen(false);
+          }
+          
+          const showModal = (record: exampleDataType) => {
+            setModalOpen(!modalOpen);
+            setSelectedRecord(record)
+          }
+        
 
         return(
+            <>
             <Drawer open={showDrawer} onClose={hideDrawer}>
-                <MyForm InputForm={form}/>
+                <Tabela openModal={showModal}/>
             </Drawer>
+
+            <MyModal showModal={modalOpen} handleOk={hideModal} record={selectedRecord} />
+            </>
         )
     };
 
 export default MyDrawer;
+
+
